@@ -1,4 +1,5 @@
 <template>
+<div class="footer">
   <nav class="footer-bar bar-tab">
     <a id="home-link" class="tab-item  external" href="/m/html/index.html">
       <i class="icon icon-nav-home"></i>
@@ -17,22 +18,23 @@
       <div class="tab-label">我的</div>
     </a>
   </nav>
+</div>
 </template>
 <style>
 
   /* 导航条 */
   .footer-bar{
-   padding-top:0.5em;
+    padding-top:0.5em;
   }
 
   .bar-tab .tab-item .icon{
     display:inline-block;
 
   }
- .footer-bar a{
+  .footer-bar a{
     display: inline-block;
     width:24%;
-   text-align:center;
+    text-align:center;
   }
   .footer-bar .tab-label{
     font-size:0.8em;

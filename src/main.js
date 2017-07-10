@@ -5,6 +5,10 @@ import App from './App'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import goodsList from './components/goodsList'
+
+import cartPage from './pages/cart'
+import myPage from './pages/my'
+import sortPage from './pages/sort'
 import 'bootstrap/dist/css/bootstrap.css'
 
 /*Vue.config.productionTip = false*/
@@ -18,6 +22,7 @@ var  router=new VueRouter({
      path:'/',
       component:goodsList
     }
+
   ]
 });
 /* eslint-disable no-new */

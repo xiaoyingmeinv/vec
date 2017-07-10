@@ -1,36 +1,97 @@
 <template>
 <div class="app">
-   <my-home></my-home>
-  <div class="footer">
-    <nav class="footer-bar bar-tab">
-      <a id="home-link" class="tab-item  external" href="/m/html/index.html">
-        <i class="icon icon-nav-home"></i>
-        <div class="tab-label">首页</div>
-      </a>
-      <a id="category-link" class="tab-item" href="/m/html/category/category.html">
-        <i class="icon icon-nav-category"></i>
-        <div class="tab-label">分类</div>
-      </a>
-      <a id="cart-link" class="tab-item external" href="/m/html/cart/cart.html">
-        <i class="icon icon-nav-cart"></i>
-        <div class="tab-label">购物车</div>
-      </a>
-      <a id="user-link" class="tab-item external" href="/m/html/my/my.html">
-        <i class="icon icon-nav-user"></i>
-        <div class="tab-label">我的</div>
-      </a>
-    </nav>
+  <div class="home">
+    <div class="header clearfix">
+      <div class="nav-left"><img src="./assets/images/jie-logo.png"></div>
+      <div class="nav-right pull-left">
+        <div class="navbar-search right-search">
+          <a href="javascript:;" class="form-control">
+            <span>搜索</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <slide-show :slides="slides" :inv="invTime"></slide-show>
+      <nav-tip></nav-tip>
+      <div class="guide-list clearfix">
+        <div class="guide-left pull-left">
+          <router-link to="/">
+            <img class="" src="./assets/images/left-promo.png">
+          </router-link>
+        </div>
+        <div class="guide-right pull-left">
+          <div class="guide-right-top">
+            <router-link to="/">
+              <img class="guideImg" src="./assets/images/right-top-promo.png">
+            </router-link>
+          </div>
+          <div class="guide-right-bottom">
+            <router-link  to="/">
+              <img class="guideImg" src="./assets/images/right-bottom-promo.png">
+            </router-link >
+          </div>
+        </div>
+      </div>
+      <hot-goods-list></hot-goods-list>
+    </div>
   </div>
+ <my-footer></my-footer>
 </div>
 </template>
-
 <script>
-import myHome from './components/home.vue'
-export default {
-  components: {
-      myHome
+  import slideShow from './components/slideShow'
+  import navTip from './components/navTip'
+  import myFooter from './components/footer'
+  import hotGoodsList from './components/hotGoodsList'
+  export default {
+    components: {
+      slideShow,
+      navTip,
+      hotGoodsList,
+      myFooter
+
+    },
+    data() {
+      return {
+        invTime: 2000,
+        slides:[
+          {
+            src: require('./assets/images/banner1.png'),
+            title: 'xxx1',
+            href: 'xxxxx'
+          },
+          {
+            src: require('./assets/images/banner-1.jpg'),
+            title: 'xxx2',
+            href:  'xxxxx'
+          },
+          {
+            src: require('./assets/images/banner3.png'),
+            title: 'xxx3',
+            href:  'xxxxx'
+          }
+        ],
+        guideList:[
+          {
+            title: 'xxx3',
+            toKey:'进口食品',
+            href:  'https://jie.net/m/html/category/category.html'
+          },
+          {
+            title: 'xxx3',
+            toKey:'家居建材',
+            href:  'https://jie.net/m/html/category/category.html'
+          },
+          {
+            title: 'xxx3',
+            toKey:'母婴',
+            href:  'https://jie.net/m/html/category/category.html'
+          }
+        ]
+      }
+    }
   }
-}
 </script>
 
 <style>
@@ -116,77 +177,80 @@ export default {
     bottom:0;
     z-index:999;
   }
+  .app .header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+  }
+  .app .header .nav-left .jieLog{
+    width:60px;
+  }
+  .app .content{
 
-  /* 导航条 */
-  .footer-bar{
-    padding-top:0.5em;
   }
-
-  .bar-tab .tab-item .icon{
-    display:inline-block;
-
+  .navbar-search{
+    margin-left: 5.5rem;
+    margin-right: 0.5rem;
   }
-  .footer-bar a{
-    display: inline-block;
-    width:24%;
-    text-align:center;
+  .form-control{
+    font-size: .8rem;
+    color: #fffcfc;
+    width: 15em;
+    height:30px;
+    margin: 10px 0 10px;
+    border: 0;
+    border-radius: 1rem;
+    display: block;
+    background: #998586 url('./assets/images/search.png') no-repeat 0.3rem center;
+    padding-left: 2.5em;
+    background-size: 1.6em;
+    text-decoration: none;
+    color:#fff;
   }
-  .footer-bar .tab-label{
-    font-size:0.8em;
-    margin-top:0.2em;
+  .nav-left{
+    position: absolute;
+    left:2em;
+    top: 16px;
+    width: 3rem;
+    display: block;
   }
-  .bar-tab .tab-item i.icon.icon-nav-home {
-    background-size: 1rem;
-    width: 1.5em;
-    height: 1.5em;
-    background: url("./assets/img/nav-home.png") no-repeat;
-    -webkit-background-size:100% 100%;
-    background-size:100% 100%;
+  .nav-left img{
+    width: 100%;
   }
-  .bar-tab .tab-item.active i.icon.icon-nav-home {
-    background: url("./assets/img/nav-home-active.png") no-repeat;
-    -webkit-background-size:100% 100%;
-    background-size:100% 100%;
+  .guide-list{
+    position:relative;
+    width:100%;
+    height:12em;
+    margin-top:0.75em;
   }
-  .bar-tab .tab-item i.icon.icon-nav-category {
-    background-size: 1em;
-    width: 1.5em;
-    height: 1.5em;
-    background: url("./assets/img/nav-category.png") no-repeat;
-    -webkit-background-size:100% 100%;
-    background-size:100% 100%;
+  .guide-left{
+    position: relative;
+    width: 40%;
+    height: 100%;
   }
-  .bar-tab .tab-item.active i.icon.icon-nav-category {
-    background: url("./assets/img/nav-category-active.png") no-repeat;
-    -webkit-background-size:100% 100%;
-    background-size:100% 100%;
+  .guide-left img{
+    width:100%;
+    height:100%;
   }
-  .bar-tab .tab-item i.icon.icon-nav-cart {
-    background-size: 1em;
-    width: 1.5em;
-    height: 1.5em;
-    background: url("./assets/img/nav-cart.png") no-repeat;
-    -webkit-background-size:100% 100%;
-    background-size:100% 100%;
+  .guide-right{
+    width:60%;
+    height:100%;
   }
-  .bar-tab .tab-item.active i.icon.icon-nav-cart {
-    background: url("./assets/img/nav-cart-active.png") no-repeat;
-    -webkit-background-size:100% 100%;
-    background-size:100% 100%;
-  }
-  .bar-tab .tab-item i.icon.icon-nav-user {
-    background-size: 1em;
-    width: 1.5em;
-    height: 1.5em;
-    background: url("./assets/img/nav-user.png") no-repeat;
-    -webkit-background-size:100% 100%;
-    background-size:100% 100%;
-  }
-  .bar-tab .tab-item.active i.icon.icon-nav-user {
-    background: url("./assets/img/nav-user-active.png") no-repeat;
-    -webkit-background-size:100% 100%;
-    background-size:100% 100%;
+  .guide-right .guide-right-top{
+    width:100%;
+    height:50%;
   }
 
+  .guide-right .guide-right-bottom{
+    width:100%;
+    height:50%;
+  }
+  .guide-right .guideImg{
+    width:100%;
+    height:100%;
+  }
 
 </style>
