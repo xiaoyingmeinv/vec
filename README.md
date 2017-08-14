@@ -1,5 +1,7 @@
 # vec
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/xiaoyingmeinv/vec.svg)](https://greenkeeper.io/)
+
 > A Vue.js project
 
 ## Build Setup
